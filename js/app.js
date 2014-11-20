@@ -41,9 +41,42 @@ angular.module('talkingBack', [])
 			
 		};
 
-		$scope.upVote = function(comment) {
-			$http.put('https://api.parse.com/1/classes/comments', comment)
-			$scope.newComment.score = {"score":{"__op":"Increment","amount":1}};
+		var upVote = {
+			score: {__op: 'Increment', amount: 1}
+		};
+		
+		$scope.increaseVote = function(comment) {
+			$http.put('https://api.parse.com/1/classes/comments/' + comment.objectId, upVote)
+				.success(function(responseData){
+
+				}) 
+				.error(function(err) {
+					console.log(err);
+				});
+		};
+		
+		var downVote = {
+			score: {__op: 'Increment', amount: -1}
+		}
+
+		$scope.decreaseVote = function(comment) {
+			$http.put('https://api.parse.com/1/classes/comments/' + comment.objectId, downVote)
+				.success(function(responseData){
+
+				}) 
+				.error(function(err) {
+					console.log(err);
+				});
+		};
+
+		$scope.deleteComment = function(comment) {
+			$http.delete('https://api.parse.com/1/classes/comments/' + comment.objectId)
+				.success(function(responseData){
+
+				})
+				.error(function(err) {
+					console.log(err);
+				});
 		}
 
 

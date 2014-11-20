@@ -50,9 +50,10 @@
                 as well as delete it
                  -->
                 <div id="comment" ng-if="comment" ng-repeat="comment in comments">
+                    <p><button id="delete" ng-click="deleteComment(comment)">Delete</button></p>
                     <h4>{{comment.title}}</h4>
                     <p>{{comment.comment}}</p>
-                    <p>{{comment.score}}<button id="upVote" ng-click="upVote(newComment)">Up</button><button id="downVote" ng-click="comment.score = comment.score - 1">Down</button></p>
+                    <p>{{comment.score}}<button id="upVote" ng-click="increaseVote(comment)">Up</button><button id="downVote" ng-click="decreaseVote(comment)">Down</button></p>
                 </div>
             </section>
 
