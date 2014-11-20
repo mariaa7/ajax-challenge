@@ -9,7 +9,7 @@
     </head>
     <body>
 
-        <main class="container">
+        <main class="container" ng-app="talkingBack" ng-controller="commentController">
             <section>
                 <img src="img/super-bass-o-matic-76.jpg" alt="product picture" class="product-picture">
                 <h1>The Super Bass-o-Matic '76</h1>
@@ -18,6 +18,20 @@
 
             <section>
                 <h2>Add a Comment</h2>
+                <form ng-submit="addComment(newComment)" id="addComment" method="POST">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your name" />
+
+                        <label for="title">Title</label>
+                        <input type="text" id="title" placeholder="Title" ng-model="newComment.title" />
+                    </div>
+                    <div>
+                        <label for="commentBody">Comment</label>
+                        <textarea id="commentBody" placeholder="Insert your comment here" ng-model="newComment.comment"></textarea>
+                    </div>
+                    <button type="submit">Submit!</button>
+                </form>
                 <!--  
                 put a form here for entering a new comment
                 the user must select a rating, and enter a name, title, and comment body
@@ -35,6 +49,11 @@
                 each comment should also have UI allowing the user to vote up/down the comment
                 as well as delete it
                  -->
+                <div id="comment" ng-if="comment" ng-repeat="comment in comments">
+                    <h4>{{comment.title}}</h4>
+                    <p>{{comment.comment}}</p>
+                    <p>{{comment.score}}<button id="upVote" ng-click="upVote(newComment)">Up</button><button id="downVote" ng-click="comment.score = comment.score - 1">Down</button></p>
+                </div>
             </section>
 
         </main>
