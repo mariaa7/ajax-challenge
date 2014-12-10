@@ -68,21 +68,51 @@ angular.module('talkingBack', ['ui.bootstrap'])
 			score: {__op: 'Increment', amount: -1}
 		};
 
+
 		$scope.decreaseVote = function(comment) {
 			if (comment.score > -1) {
-			$http.put('https://api.parse.com/1/classes/comments/' + comment.objectId, downVote)
+				$http.put('https://api.parse.com/1/classes/comments/' + comment.objectId, downVote)
+					.success(function(responseData){
+						
+					})
+					.error(function(err) {
+						console.log(err);
+					});
+			}
+		};
+
+		var upVote = {
+			score: {__op: 'Increment', amount: 1}
+		};
+		
+		$scope.increaseVote = function(comment) {
+			$http.put('https://api.parse.com/1/classes/comments/' + comment.objectId, upVote)
 				.success(function(responseData){
-					
-				})
+
+				}) 
 				.error(function(err) {
 					console.log(err);
 				});
-			}
+		};
+		
+		var downVote = {
+			score: {__op: 'Increment', amount: -1}
+		}
+
+		$scope.decreaseVote = function(comment) {
+			$http.put('https://api.parse.com/1/classes/comments/' + comment.objectId, downVote)
+				.success(function(responseData){
+
+				}) 
+				.error(function(err) {
+					console.log(err);
+				});
 		};
 
 		$scope.deleteComment = function(comment) {
 			$http.delete('https://api.parse.com/1/classes/comments/' + comment.objectId)
 				.success(function(responseData){
+
 					$scope.refreshComments();
 				})
 				.error(function(err) {
@@ -103,7 +133,7 @@ angular.module('talkingBack', ['ui.bootstrap'])
 	});
 
 	$('#submit').click(function(event) {
-var requiredFields = ['#name', '#title', '#commentBody'];
+		var requiredFields = ['#name', '#title', '#commentBody'];
 		 	var valid = true;
 		 	var i;
 		 	for (i = 0; i < requiredFields.length; i++) {

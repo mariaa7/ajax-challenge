@@ -31,24 +31,12 @@
                     <div>
                         <textarea class="form" cols="61" rows="5" id="commentBody" placeholder="Insert your comment here" ng-model="newComment.comment"></textarea>
                     </div>
-                    <button id="submit" type="submit">Submit comment</button><img src="img/ajax-spinner-sm.gif" ng-if="uploading" />
+                    <button id="submit" type="submit">Submit</button><img src="img/ajax-spinner-sm.gif" ng-if="uploading" />
                 </form>
-                <!--
-                put a form here for entering a new comment
-                the user must select a rating, and enter a name, title, and comment body
-                before the comment can be saved to the server
-                for the rating selection, use the Angular Bootstrap Rating directive
-                http://angular-ui.github.io/bootstrap/#/rating
-                their script file is included below
-                -->
+                
             </section>
             <section>
                 <h2>Comments</h2>
-                <!--
-                display existing comments here
-                each comment should also have UI allowing the user to vote up/down the comment
-                as well as delete it
-                -->
                 <h3 ng-if="comments.length == 0">No comments yet. Be the first to review this!</h3>
                 <img src="img/ajax-spinner.gif" ng-if="loading" />
                 <div id="comment" ng-if="comment" ng-repeat="comment in comments | orderBy:order">
@@ -59,7 +47,7 @@
                     
                     <p class="commentBody">{{comment.comment}}</p>
                     <p>{{comment.score}}<a class="vote" id="upVote" ng-click="increaseVote(comment)">Vote up</a> | <a class="vote" id="downVote" ng-click="decreaseVote(comment)">Vote down</a></p>
-                </div>
+                
             </section>
         </main>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
