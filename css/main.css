@@ -12,6 +12,47 @@ body {
 }
 
 #comment {
-	border: 1px black solid;
+	border-bottom: 1px gray solid;
 }
 
+#delete {
+	margin: 1px;
+	float: right;
+	color: red;
+}
+
+.name {
+	color: gray;
+}
+
+.vote {
+	padding: .5em;
+}
+
+.commentBody {
+	font-size: 110%;
+}
+
+label {
+	font-size: 110%;
+	margin-right: 1em;
+}
+
+button {
+	background-color: #428BCA;
+	border: none;
+	border-radius: 5px;
+	color: white;
+}
+
+.form {
+	border-radius: 5px;
+	border-color: gray;
+}
+.invalid {
+	border: 1px solid red;
+}
+
+#comment {
+	width: 70%;
+}
